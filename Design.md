@@ -8,12 +8,12 @@
 - onVerify
 - host
 - port
+- name
+- room
 
 ## Member Variables
 - private socket: Socket? - stores connection
 - private unVerified: HashSet - stores sent messages that have not come back from the server
-- private name: String - stores the client's name
-- private room: String - stores the client's room code
 
 ## Notes
 
@@ -30,12 +30,15 @@ in order to match the received message to the unverified message
     - initialize the socket
     - call onConnect
     - start awaitMessages with a coroutine
+    - send an opening message using the provided name and room, formatted as
+    	<Name>Aidan</Name><RoomCode>AAAAA</RoomCode>
 ## close
     - send disconnect message
     - cancel any running threads using the connection
     - close the connection
     - call onDisconnect
 ## awaitMessages
+    - non-blocking
     - lock connection with a timeout while recieving
         - timeout in order for other threads to take control periodically
     - read until null char
@@ -52,12 +55,13 @@ in order to match the received message to the unverified message
     - lock connection
 ## public sendMessage (Overload)
     - only send <Message></Message> formatted messages
+    - call the private sendMessage internally
     - otherwise the same as the private method
 ## changeName
-    - update the private member variable
+    - lock and update the private member variable
     - send the update message
 ## changeRoom
-    - update the private member variable
+    - lock and update the private member variable
     - send the update message
 # Networking API
     - change name <Name>Aidan</Name>
