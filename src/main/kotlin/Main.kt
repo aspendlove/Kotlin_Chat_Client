@@ -14,7 +14,7 @@ fun start()= runBlocking {
 //    socket.close()
 ////    var client = Client()
 
-    var client: Client = Client(
+    val client: Client = Client(
         { messages: List<String> -> onMessage(messages) },
         { onDisconnect() },
         { hostAndPort: String -> onConnect(hostAndPort) },
@@ -23,7 +23,7 @@ fun start()= runBlocking {
         7070
     )
     launch {
-        client.connect()
+        client.start()
     }
 }
 
