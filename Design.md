@@ -64,9 +64,10 @@ in order to match the received message to the unverified message
     - lock and update the private member variable
     - send the update message
 # Networking API
+    - clients should only receive messages formatted as <Message></Message>
     - change name <Name>Aidan</Name>
     - change room <RoomCode>RBD23</RoomCode>
     - message <Message></Message>
-    - disconnect <Disconnect>
+    - disconnect <Disconnect> - only sent to server, never received by client
     - messages end with a null char
     - Room codes are 5 characters, with all uppercase letters, and digits 0-9

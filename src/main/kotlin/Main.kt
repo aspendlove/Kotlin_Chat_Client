@@ -1,20 +1,5 @@
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-
 fun main(args: Array<String>) {
-    start()
-}
-
-fun start()= runBlocking {
-//    val selectorManager = SelectorManager(Dispatchers.IO)
-//    val socket = aSocket(selectorManager).tcp().connect("127.0.0.1", 7070)
-//    print(socket)
-//    val sendChannel = socket.openWriteChannel(autoFlush = true)
-//    sendChannel.writeStringUtf8("<Message>Hello World!</Message>" + 0.toChar())
-//    socket.close()
-////    var client = Client()
-
-    val client: Client = Client(
+    val client = Client(
         { messages: List<String> -> onMessage(messages) },
         { onDisconnect() },
         { hostAndPort: String -> onConnect(hostAndPort) },
@@ -22,12 +7,15 @@ fun start()= runBlocking {
         "127.0.0.1",
         7070
     )
-    launch {
-        client.start()
+
+    client.start()
+
+    while(true){
     }
 }
 
 fun onMessage(messages: List<String>) {
+    println("message received")
     for(message:String in messages) {
         println(message)
     }
