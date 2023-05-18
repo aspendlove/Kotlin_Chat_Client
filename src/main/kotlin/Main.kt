@@ -5,7 +5,7 @@ fun main(args: Array<String>) {
         { hostAndPort: String -> onConnect(hostAndPort) },
         { message: String -> onVerify(message) },
         "127.0.0.1",
-        7070
+        7071
     )
 
     client.start()
@@ -15,10 +15,10 @@ fun main(args: Array<String>) {
 }
 
 fun onMessage(messages: List<String>) {
-    println("message received")
     for(message:String in messages) {
         println(message)
     }
+    println()
 }
 
 fun onDisconnect() {

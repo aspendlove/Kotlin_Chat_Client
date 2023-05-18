@@ -44,6 +44,8 @@ in order to match the received message to the unverified message
     - read until null char
     - call the onMessage callback and pass the recieved message
     - check if the message is in the unverified storage, and if so call onVerify instead
+## private processMessages
+    - handle removing the <Message></Message> tags from valid messages
 ## private sendMessage (Overload)
     - Handle message type ENUM
         - name change
